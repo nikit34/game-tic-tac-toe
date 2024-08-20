@@ -65,4 +65,9 @@ if __name__ == '__main__':
             print('Игрок ' + player + ' выиграл!')
             break
 
+        if check_draw(board):
+            show_board(board)
+            print('Ничья!')
+            break
+
         step += 1
