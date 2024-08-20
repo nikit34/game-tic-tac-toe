@@ -25,6 +25,13 @@ def check_winner(board, player):
     for col in range(count_columns):
         if all(board[row][col] == player for row in range(count_columns)):
             return True
+
+    if all(board[i][i] == player for i in range(count_columns)):
+        return True
+
+    if all(board[i][count_columns - 1 - i] == player for i in range(count_columns)):
+        return True
+
     return False
 
 

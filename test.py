@@ -42,6 +42,20 @@ class TestTicTacToe(TestCase):
             ['X', '.', '.']]
         self.assertFalse(check_winner(self.board, 'X'))
 
+    def test_check_winner_diagonals(self):
+        self.board = [
+            ['X', '.', '.'],
+            ['.', 'X', '.'],
+            ['.', '.', 'X']
+        ]
+        self.assertTrue(check_winner(self.board, 'X'))
+
+        self.board = [
+            ['O', '.', 'O'],
+            ['.', 'O', '.'],
+            ['.', '.', '.']]
+        self.assertFalse(check_winner(self.board, 'O'))
+
     def test_check_draw(self):
         self.board = [['X', 'X', 'X'], ['O', 'X', 'X'], ['O', 'X', 'O']]
         self.assertTrue(check_draw(self.board))
