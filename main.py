@@ -41,7 +41,11 @@ def check_draw(board):
 
 
 if __name__ == '__main__':
-    board = [['.' for _ in range(3)] for _ in range(3)]
+    board_size = int(input('Введите размер строки (например, 3 для 3x3): '))
+    if board_size < 2:
+        raise ValueError('Размер поля должен быть больше 2')
+
+    board = [['.' for _ in range(board_size)] for _ in range(board_size)]
     step = 0
     players = ['O', 'X']
 
@@ -52,16 +56,16 @@ if __name__ == '__main__':
 
         while True:
             try:
-                row = int(input('Введите номер строки (1-3): ')) - 1
-                col = int(input('Введите номер столбца (1-3): ')) - 1
-                if 0 <= row < 3 and 0 <= col < 3:
+                row = int(input('Введите номер строки (1-' + str(board_size) + '): ')) - 1
+                col = int(input('Введите номер столбца (1-' + str(board_size) + '): ')) - 1
+                if 0 <= row < board_size and 0 <= col < board_size:
                     if is_cell_busy(board, row, col):
                         print('[WARNING] Эта клетка уже занята')
                     else:
                         point_cell(board, row, col, player)
                         break
                 else:
-                    print('[ERROR] Введите значение от 1 до 3')
+                    print('[ERROR] Введите значение от 1 до ' + str(board_size))
             except ValueError:
                 print('[ERROR] Введите число')
 
