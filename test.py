@@ -11,9 +11,10 @@ from main import (
 class TestTicTacToe(TestCase):
 
     def setUp(self):
-        self.board = [['.' for _ in range(3)] for _ in range(3)]
+        self.board_size = 4
+        self.board = [['.' for _ in range(self.board_size)] for _ in range(self.board_size)]
 
-    def test_make_check_busy_and_point_cell(self):
+    def test_is_cell_busy_and_point_cell(self):
         result = is_cell_busy(self.board, 0, 0)
         self.assertFalse(result)
 
@@ -22,43 +23,40 @@ class TestTicTacToe(TestCase):
         self.assertTrue(result)
 
     def test_check_winner_rows(self):
-        self.board[0] = ['X', 'X', 'X']
+        self.board[0] = ['X'] * self.board_size
         self.assertTrue(check_winner(self.board, 'X'))
 
-        self.board[0] = ['X', 'O', 'X']
+        self.board[0] = ['X'] * (self.board_size - 1) + ['O']
         self.assertFalse(check_winner(self.board, 'X'))
 
     def test_check_winner_columns(self):
-        self.board = [
-            ['X', '.', '.'],
-            ['X', '.', '.'],
-            ['X', '.', '.']
-        ]
+        for row in range(self.board_size):
+            self.board[row][0] = 'X'
         self.assertTrue(check_winner(self.board, 'X'))
 
-        self.board = [
-            ['X', '.', '.'],
-            ['O', '.', '.'],
-            ['X', '.', '.']]
+        self.board[0][0] = 'X'
+        for row in range(1, self.board_size):
+            self.board[row][0] = 'O'
         self.assertFalse(check_winner(self.board, 'X'))
 
-    def test_check_winner_diagonals(self):
-        self.board = [
-            ['X', '.', '.'],
-            ['.', 'X', '.'],
-            ['.', '.', 'X']
-        ]
+    def test_check_winner_main_diagonal(self):
+        for i in range(self.board_size):
+            self.board[i][i] = 'X'
         self.assertTrue(check_winner(self.board, 'X'))
 
-        self.board = [
-            ['O', '.', 'O'],
-            ['.', 'O', '.'],
-            ['.', '.', '.']]
-        self.assertFalse(check_winner(self.board, 'O'))
+    def test_check_winner_anti_diagonal(self):
+        for i in range(self.board_size):
+            self.board[i][self.board_size - 1 - i] = 'X'
+        self.assertTrue(check_winner(self.board, 'X'))
+
+    def test_check_no_winner(self):
+        self.assertFalse(check_winner(self.board, 'X'))
+
+        self.board[0] = ['O'] * self.board_size
+        self.assertFalse(check_winner(self.board, 'X'))
 
     def test_check_draw(self):
-        self.board = [['X', 'X', 'X'], ['O', 'X', 'X'], ['O', 'X', 'O']]
-        self.assertTrue(check_draw(self.board))
-
-        self.board = [['X', 'O', 'X'], ['O', 'X', 'O'], ['O', 'X', '.']]
         self.assertFalse(check_draw(self.board))
+        board = [['O' for _ in range(self.board_size)] for _ in range(self.board_size)]
+        self.assertTrue(check_draw(board))
+
