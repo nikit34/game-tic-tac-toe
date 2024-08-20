@@ -36,10 +36,7 @@ def check_winner(board, player):
 
 
 def check_draw(board):
-    for row in board:
-        if '.' in row:
-            return False
-    return True
+    return all(cell != '.' for row in board for cell in row)
 
 
 if __name__ == '__main__':
