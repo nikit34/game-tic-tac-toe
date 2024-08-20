@@ -5,6 +5,12 @@ def show_board(board):
         print(str(i) + ' ' + ' '.join(row))
 
 
+def is_cell_busy(board, row, col):
+    if board[row][col] == '.':
+        return False
+    return True
+
+
 if __name__ == "__main__":
     board = [['.' for _ in range(3)] for _ in range(3)]
     step = 0
@@ -20,7 +26,10 @@ if __name__ == "__main__":
                 row = int(input("Введите номер строки (1-3): ")) - 1
                 col = int(input("Введите номер столбца (1-3): ")) - 1
                 if 0 <= row < 3 and 0 <= col < 3:
-                    print("Игрок делает ход")
+                    if is_cell_busy(board, row, col):
+                        print("[WARNING] Эта клетка уже занята")
+                    else:
+                        print("Игрок делает ход")
                     break
                 else:
                     print("[ERROR] Введите значение от 1 до 3")
