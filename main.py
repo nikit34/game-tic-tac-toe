@@ -1,8 +1,9 @@
 
 def show_board(board):
-    print('  1 2 3')
+    n = len(board)
+    print('  ' + ' '.join(str(i + 1) for i in range(n)))
     for i, row in enumerate(board):
-        print(str(i) + ' ' + ' '.join(row))
+        print(str(i + 1) + ' ' + ' '.join(row))
 
 
 def is_cell_busy(board, row, col):
