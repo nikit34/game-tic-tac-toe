@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from main import is_cell_busy, point_cell
+from main import is_cell_busy, point_cell, check_winner
 
 
 class TestTicTacToe(TestCase):
@@ -16,3 +16,9 @@ class TestTicTacToe(TestCase):
         result = is_cell_busy(self.board, 0, 0)
         self.assertTrue(result)
 
+    def test_check_winner_rows(self):
+        self.board[0] = ['X', 'X', 'X']
+        self.assertTrue(check_winner(self.board, 'X'))
+
+        self.board[0] = ['X', 'O', 'X']
+        self.assertFalse(check_winner(self.board, 'X'))

@@ -15,6 +15,13 @@ def point_cell(board, row, col, player):
     board[row][col] = player
 
 
+def check_winner(board, player):
+    for row in board:
+        if all(cell == player for cell in row):
+            return True
+    return False
+
+
 if __name__ == "__main__":
     board = [['.' for _ in range(3)] for _ in range(3)]
     step = 0
