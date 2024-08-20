@@ -45,13 +45,17 @@ if __name__ == '__main__':
     if board_size < 2:
         raise ValueError('Размер поля должен быть больше 2')
 
+    count_players = int(input('Введите количество игроков: '))
+    if count_players < 2:
+        raise ValueError('Количество игроков должно быть больше 2')
+
     board = [['.' for _ in range(board_size)] for _ in range(board_size)]
     step = 0
-    players = ['O', 'X']
+    players = [chr(ord('A') + i) for i in range(count_players)]
 
     while True:
         show_board(board)
-        player = players[step % 2]
+        player = players[step % count_players]
         print('Ход игрока: ' + player)
 
         while True:
