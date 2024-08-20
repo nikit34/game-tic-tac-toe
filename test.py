@@ -22,3 +22,17 @@ class TestTicTacToe(TestCase):
 
         self.board[0] = ['X', 'O', 'X']
         self.assertFalse(check_winner(self.board, 'X'))
+
+    def test_check_winner_columns(self):
+        self.board = [
+            ['X', '.', '.'],
+            ['X', '.', '.'],
+            ['X', '.', '.']
+        ]
+        self.assertTrue(check_winner(self.board, 'X'))
+
+        self.board = [
+            ['X', '.', '.'],
+            ['O', '.', '.'],
+            ['X', '.', '.']]
+        self.assertFalse(check_winner(self.board, 'X'))

@@ -16,8 +16,14 @@ def point_cell(board, row, col, player):
 
 
 def check_winner(board, player):
+    count_columns = len(board)
+
     for row in board:
         if all(cell == player for cell in row):
+            return True
+
+    for col in range(count_columns):
+        if all(board[row][col] == player for row in range(count_columns)):
             return True
     return False
 
