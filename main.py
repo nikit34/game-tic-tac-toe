@@ -34,7 +34,6 @@ if __name__ == "__main__":
                         print("[WARNING] Эта клетка уже занята")
                     else:
                         point_cell(board, row, col, player)
-                        print("Игрок делает ход")
                         break
                 else:
                     print("[ERROR] Введите значение от 1 до 3")
