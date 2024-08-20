@@ -28,6 +28,13 @@ def check_winner(board, player):
     return False
 
 
+def check_draw(board):
+    for row in board:
+        if '.' in row:
+            return False
+    return True
+
+
 if __name__ == '__main__':
     board = [['.' for _ in range(3)] for _ in range(3)]
     step = 0
