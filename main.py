@@ -11,6 +11,10 @@ def is_cell_busy(board, row, col):
     return True
 
 
+def point_cell(board, row, col, player):
+    board[row][col] = player
+
+
 if __name__ == "__main__":
     board = [['.' for _ in range(3)] for _ in range(3)]
     step = 0
@@ -29,8 +33,9 @@ if __name__ == "__main__":
                     if is_cell_busy(board, row, col):
                         print("[WARNING] Эта клетка уже занята")
                     else:
+                        point_cell(board, row, col, player)
                         print("Игрок делает ход")
-                    break
+                        break
                 else:
                     print("[ERROR] Введите значение от 1 до 3")
             except ValueError:
