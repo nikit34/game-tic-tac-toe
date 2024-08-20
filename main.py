@@ -14,3 +14,5 @@ if __name__ == "__main__":
         show_board(board)
         player = players[step % 2]
         print("Ход игрока: " + player)
+
+        step += 1
