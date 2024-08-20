@@ -53,4 +53,9 @@ if __name__ == "__main__":
             except ValueError:
                 print("[ERROR] Введите число")
 
+        if check_winner(board, player):
+            show_board(board)
+            print('Игрок ' + player + ' выиграл!')
+            break
+
         step += 1
